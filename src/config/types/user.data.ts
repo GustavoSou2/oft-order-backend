@@ -24,3 +24,8 @@ export enum UserKeys {
     date_update_at = 'date_update_at',
     date_delete_at = 'date_delete_at'
 }
+
+export class IUserLoginDirective {
+    cnpj!: string;
+    pass!: string;
+}

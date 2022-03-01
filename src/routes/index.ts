@@ -14,6 +14,6 @@ routes.get('/user/:id', UserRoute.getUser)
 
 routes.post('/sendUser', UserRoute.sendUser)
 
-routes.post('/setUser', UserRoute.setUser)
+routes.post('/login', UserRoute.login)
 
 export default routes;

@@ -3,7 +3,7 @@ import { Router, Response, Request, NextFunction } from "express";
 import { Connection, Query } from "../../config/mysql/index.mysql";
 import queryRoute from "./query.route";
 // @ts-ignore
-import {IUser} from "@types/user.data";
+import {IUser, IUserLoginDirective} from "@types/user.data";
 
 class UserRoute {
     public async getAllUsers(req: Request, res: Response): Promise<Response | any> {
@@ -81,7 +81,7 @@ class UserRoute {
             })
     }
 
-    public async setUser(req: Request, res: Response): Promise<Response | any>{
+    /*public async setUser(req: Request, res: Response): Promise<Response | any>{
         let setUser: IUser = {
             username: req.body.username,
             mail: req.body.mail,
@@ -95,7 +95,7 @@ class UserRoute {
 
         res.json({setUser});
 
-       /* Connection()
+       Connection()
             .then((conn) => {
                 Query(conn, queryRoute.sendUser(user))
                     .then((data) => {
@@ -113,9 +113,39 @@ class UserRoute {
                     message: `Error: (Inexpected) ${err.message}`,
                     error: err
                 })
-            })*/
+            })
 
     }
+*/
+
+    public async login(req: Request, res: Response): Promise<Response | any>{
+
+        let userDirective: IUserLoginDirective = {
+            cnpj: req.body.cnpj,
+            pass: req.body.pass
+        }
+
+        Connection()
+            .then((conn) => {
+                Query(conn, `SELECT id, name, id_company, cnpj FROM users WHERE cnpj = '${userDirective.cnpj}' AND pass = '${userDirective.pass}'`)
+                    .then((data) => {
+                        return res.status(200).json({ data })
+                    })
+                    .catch((err) => {
+                        return res.status(500).json({
+                            message: `Error: (Inexpected) ${err.message}`,
+                            error: err
+                        })
+                    })
+            })
+            .catch((err) => {
+                return res.status(500).json({
+                    message: `Error: (Inexpected) ${err.message}`,
+                    error: err
+                })
+            })
+    }
+
 
 
 }
