@@ -26,14 +26,14 @@
     /* Modules */
     "module": "commonjs",
     "rootDir": "src",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
-      "@controller/*" : ["./src/controller/*"],
-      "@routes_costumer/*": ["./src/routes/*"],
-      "@configProject/*" : ["./src/config/*"],
-      "@environments/*": ["./src/config/environment/*"],
-      "@mysql_costumer/*": ["./src/config/mysql/*"],
-      "@types/*": ["./src/config/types/*"]
+      "@controller/*" : ["./controller/*"],
+      "@routes_costumer/*": ["./routes/*"],
+      "@Config/*" : ["./config/*"],
+      "@environments/*": ["./config/environment/*"],
+      "@mysql/*": ["./config/mysql/*"],
+      "@types/*": ["./config/types/*"]
 
     },
     /* Specify what module code is generated. */

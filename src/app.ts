@@ -19,7 +19,8 @@ class App {
     private cors() {
         const allowedOrigins = ['*'];
         const options: cors.CorsOptions = {
-            origin: allowedOrigins
+            origin: '*',
+            credentials:true,            //access-control-allow-credentials:true
         }
         this.app.use(cors(options))
         this.app.use(express.json())
