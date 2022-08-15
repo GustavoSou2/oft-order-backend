@@ -1,21 +1,15 @@
 // @ts-ignore
-import {IUser} from "@types/user.data";
+import { UserModel } from "@types/user.data";
 
 const queries = {
     'getAllUsers': 'SELECT * FROM users',
     'findUser': (id: number) => {
         return `SELECT * FROM users WHERE id = ${id};`;
     },
-    'sendUser': (user: IUser) => {
-        return `INSERT INTO users (name, mail, pass, id_company, phone, date_create_at) 
-                VALUES ('${user.username}', '${user.mail}', '${user.pass}', ${user.id_company}, '${user.phone}', NOW());`
-    },
-    'setUser': (user: IUser) => {
-        return `
-        UPDATE INTO users ()
-        `;
+    'sendUser': (user: any) => {
+        return `INSERT INTO users (name, mail, password, work_description, company_description, company_cnpj, created_at) 
+                VALUES ('${user.name}', '${user.mail}', md5('${user.password}'), '${user.description_work}', '${user.company_name}', '${user.cnpj}', NOW());`
     }
-
 }
 
 export default queries;
